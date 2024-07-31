@@ -14,7 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayValue = displayValue.slice(0, -1);
             } else if (buttonId === 'equal') {
                 try {
-                    displayValue = eval(displayValue).toString();
+                    const result = eval(displayValue);
+                    if (result === Infinity || result === -Infinity || isNaN(result)) {
+                        displayValue = 'Error';
+                    } else {
+                        displayValue = result.toString();
+                    }
                 } catch {
                     displayValue = 'Error';
                 }
